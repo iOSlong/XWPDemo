@@ -20,7 +20,7 @@ class PDCGAffineTransformViewController: PDViewController {
     }()
     
     var zoomSV:PDZoomScrollView = {
-        let zoomv = PDZoomScrollView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let zoomv = PDZoomScrollView.init(frame: CGRect(x: 0, y: 0, width: 241, height: 241))
         return zoomv
     }()
     
@@ -89,23 +89,27 @@ class PDCGAffineTransformViewController: PDViewController {
             self.slider_y.setRefrenceValue(ref_mapVal: 0)
             self.reloadImageViewTransform()
         }
+        self.zoomSV.resetOriginalZoom()
     }
     
     override func logInfoButtonClick(_:UIButton) {
-        print("CurView:",self.curView as Any,"Frame:",self.curView?.frame as Any)
+        print(self.curView?.layoutInfo() as Any)
+        if self.curView == self.zoomSV {
+            self.zoomSV.layoutZoomVInfo()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.buildControlItems()
         
         self.view.addSubview(self.zoomSV)
         self.curView = self.zoomSV;
         
+        self.buildControlItems()
+
 //        self.view.addSubview(self.imgv)
 //        self.curView = self.imgv
-        
         
         var curCP = self.view.center
         curCP.y += 100
