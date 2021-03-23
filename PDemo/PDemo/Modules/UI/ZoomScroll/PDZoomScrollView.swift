@@ -119,31 +119,37 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
     }
     
     @objc private func doubleTapAction(_ tap:UITapGestureRecognizer){
-        let  touchP = tap.location(in: self)
-        print("touchP:",touchP)
-        print("offset:",self.scrollView!.contentOffset)
-        print(self.imgView)
+        let modeSize:CGSize = self.imgTransF!.sizeForContentMode(self.imgView.contentMode)
+        let oldTransF = self.imgView.transform
+        var transF = self.imgView.transform
+        var touchP = tap.location(in: self.imgView)
+        touchP = CGPoint.init(x: touchP.x * oldTransF.a, y: touchP.y * oldTransF.d)
         
-        var transF = self.scrollView!.transform
-        if transF.a <= 1.8 {
+        if transF.a < 1.8 {
             transF.a = 1.8
             transF.d = 1.8
         } else {
             transF.a = 1
             transF.d = 1
         }
+        let ratioCalce = transF.a/oldTransF.a
         let oriOffset = self.scrollView!.contentOffset
-        let destP  = CGPoint.init(x: touchP.x * transF.a, y: touchP.y * transF.d)
-        var offset = CGPoint.init(x: destP.x - touchP.x, y: destP.y - touchP.y)
-        offset = CGPoint.init(x: offset.x + oriOffset.x, y: offset.y + oriOffset.y)
+        let destP  = CGPoint.init(x: touchP.x * ratioCalce, y: touchP.y * ratioCalce)
+        let offsetP = CGPoint.init(x: destP.x - touchP.x, y: destP.y - touchP.y)
+        var offsetScroll:CGPoint
+        offsetScroll = CGPoint.init(x: oriOffset.x + offsetP.x, y: oriOffset.y + offsetP.y)
         
-        let conSize = CGSize.init(width: transF.a * self.imgView.frame.width, height: transF.a * self.imgView.frame.height)
+        let conSize = CGSize.init(width: transF.a * modeSize.width, height: transF.d * modeSize.height)
+        if oldTransF.a > transF.a {
+            offsetScroll = CGPoint.init(x: max(offsetScroll.x, 0), y: max(offsetScroll.y, 0))
+            offsetScroll = CGPoint.init(x: min(offsetScroll.x, conSize.width-self.scrollView!.frame.width), y: min(offsetScroll.y, conSize.height-self.scrollView!.frame.height))
+        }
         
         UIView.animate(withDuration: 0.25) {
             self.imgView.transform = transF
-            self.scrollView?.contentSize = CGSize.init(width: max(conSize.width, self.frame.width), height: max(conSize.height, self.frame.height))
+            self.scrollView!.contentSize = CGSize.init(width: max(conSize.width, self.frame.width), height: max(conSize.height, self.frame.height))
             self.imgView.center = CGPoint.init(x: 0.5 * max(conSize.width, self.frame.width), y: 0.5 * max(conSize.height, self.frame.height))
-            self.scrollView?.contentOffset = offset
+            self.scrollView!.contentOffset = offsetScroll
         }
     }
     
