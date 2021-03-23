@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0101A6832609EA1E0000A22A /* long_widthSmall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0101A6802609EA1E0000A22A /* long_widthSmall.jpg */; };
+		0101A6842609EA1E0000A22A /* long_heightSmall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0101A6812609EA1E0000A22A /* long_heightSmall.jpg */; };
+		0101A6852609EA1E0000A22A /* long_widthBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 0101A6822609EA1E0000A22A /* long_widthBig.png */; };
 		01924418260480B30010CA1A /* PDValueSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01924417260480B30010CA1A /* PDValueSlider.swift */; };
 		019244222608BCA10010CA1A /* PDIMGTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019244212608BCA00010CA1A /* PDIMGTransform.swift */; };
 		01C23BE52603236C00D94573 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23BE42603236C00D94573 /* AppDelegate.swift */; };
@@ -29,14 +32,15 @@
 		01C23C262603499500D94573 /* PDVCUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23C252603499500D94573 /* PDVCUtil.swift */; };
 		01C23C2A26034ECD00D94573 /* PDZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23C2926034ECD00D94573 /* PDZoomScrollView.swift */; };
 		01C23C2E26034EEF00D94573 /* PDZoomScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23C2D26034EEF00D94573 /* PDZoomScrollViewController.swift */; };
-		01C23C33260350A600D94573 /* long_width.png in Resources */ = {isa = PBXBuildFile; fileRef = 01C23C31260350A600D94573 /* long_width.png */; };
-		01C23C34260350A600D94573 /* long_height.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01C23C32260350A600D94573 /* long_height.jpg */; };
 		01C23C392603513000D94573 /* PDFileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23C382603513000D94573 /* PDFileUtil.swift */; };
 		817D53A754ED472F7519E14D /* Pods_PDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44123745A32C1A610C2323E /* Pods_PDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		007E21AF651E28A683EAE97F /* Pods-PDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDemo.release.xcconfig"; path = "Target Support Files/Pods-PDemo/Pods-PDemo.release.xcconfig"; sourceTree = "<group>"; };
+		0101A6802609EA1E0000A22A /* long_widthSmall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = long_widthSmall.jpg; sourceTree = "<group>"; };
+		0101A6812609EA1E0000A22A /* long_heightSmall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = long_heightSmall.jpg; sourceTree = "<group>"; };
+		0101A6822609EA1E0000A22A /* long_widthBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = long_widthBig.png; sourceTree = "<group>"; };
 		01924417260480B30010CA1A /* PDValueSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDValueSlider.swift; sourceTree = "<group>"; };
 		019244212608BCA00010CA1A /* PDIMGTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDIMGTransform.swift; sourceTree = "<group>"; };
 		01C23BE12603236C00D94573 /* PDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,8 +65,6 @@
 		01C23C252603499500D94573 /* PDVCUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDVCUtil.swift; sourceTree = "<group>"; };
 		01C23C2926034ECD00D94573 /* PDZoomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDZoomScrollView.swift; sourceTree = "<group>"; };
 		01C23C2D26034EEF00D94573 /* PDZoomScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDZoomScrollViewController.swift; sourceTree = "<group>"; };
-		01C23C31260350A600D94573 /* long_width.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = long_width.png; sourceTree = "<group>"; };
-		01C23C32260350A600D94573 /* long_height.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = long_height.jpg; sourceTree = "<group>"; };
 		01C23C36260350B400D94573 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		01C23C382603513000D94573 /* PDFileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFileUtil.swift; sourceTree = "<group>"; };
 		D8647B626CBB03467C0B6313 /* Pods-PDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDemo.debug.xcconfig"; path = "Target Support Files/Pods-PDemo/Pods-PDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -215,8 +217,9 @@
 		01C23C302603507600D94573 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				01C23C32260350A600D94573 /* long_height.jpg */,
-				01C23C31260350A600D94573 /* long_width.png */,
+				0101A6812609EA1E0000A22A /* long_heightSmall.jpg */,
+				0101A6822609EA1E0000A22A /* long_widthBig.png */,
+				0101A6802609EA1E0000A22A /* long_widthSmall.jpg */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -307,10 +310,11 @@
 			files = (
 				01C23C132603241500D94573 /* Questions in Resources */,
 				01C23BF12603236D00D94573 /* LaunchScreen.storyboard in Resources */,
-				01C23C34260350A600D94573 /* long_height.jpg in Resources */,
+				0101A6852609EA1E0000A22A /* long_widthBig.png in Resources */,
+				0101A6832609EA1E0000A22A /* long_widthSmall.jpg in Resources */,
+				0101A6842609EA1E0000A22A /* long_heightSmall.jpg in Resources */,
 				01C23BEE2603236D00D94573 /* Assets.xcassets in Resources */,
 				01C23BEC2603236C00D94573 /* Main.storyboard in Resources */,
-				01C23C33260350A600D94573 /* long_width.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

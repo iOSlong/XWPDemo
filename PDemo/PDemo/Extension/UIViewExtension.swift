@@ -26,6 +26,7 @@ extension UIView {
         let label = UILabel()
         label.font = font ?? UIFont.italicSystemFont(ofSize: 12)
         label.textColor = textColor ?? .white
+        label.numberOfLines = 0
         return label
     }
 }

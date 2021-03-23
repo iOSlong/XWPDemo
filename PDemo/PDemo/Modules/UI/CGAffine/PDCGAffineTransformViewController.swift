@@ -11,7 +11,7 @@ class PDCGAffineTransformViewController: PDViewController {
 
     var imgv:UIImageView = {
         let imgv = UIImageView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        let imgURL = PDFileUtil.fileURL(fileName: "long_height", type: "jpg")
+        let imgURL = PDFileUtil.fileURL(fileName: "long_widthSmall", type: "jpg")
         let ciImg = CIImage.init(contentsOf: imgURL!)
         imgv.image = UIImage.init(ciImage: ciImg!)
         imgv.contentMode = .scaleAspectFit

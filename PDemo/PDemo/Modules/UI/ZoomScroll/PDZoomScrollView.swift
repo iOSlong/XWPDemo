@@ -8,9 +8,9 @@
 import UIKit
 
 class PDZoomScrollView: UIView,UIScrollViewDelegate{
-    var tapDoubleGR:UITapGestureRecognizer?
-    var scrollView:UIScrollView?
-    var imgTransF:PDIMGTransform?
+    var tapDoubleGR:UITapGestureRecognizer!
+    var scrollView:UIScrollView!
+    var imgTransF:PDIMGTransform!
     var imgView:UIImageView = {
         let imgv = UIImageView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
 //        imgv.contentMode = .scaleAspectFit
@@ -44,17 +44,15 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         super.init(frame: frame)
         
         self.scrollView = UIScrollView.init(frame: self.bounds)
-        self.scrollView?.contentSize = self.bounds.size
-        self.scrollView?.maximumZoomScale = 2
-        self.scrollView?.minimumZoomScale = 0.5
-        self.scrollView?.delegate = self
+        self.scrollView.contentSize = self.bounds.size
+        self.scrollView.delegate = self
         self.addSubview(self.scrollView!)
-        self.scrollView?.snp.makeConstraints({ (maker) in
+        self.scrollView.snp.makeConstraints({ (maker) in
             maker.edges.equalTo(self)
         })
         
         self.imgView.frame = self.scrollView!.bounds
-        self.scrollView?.addSubview(self.imgView)
+        self.scrollView.addSubview(self.imgView)
         
         
         self.addSubview(self.labelZoom)
@@ -64,7 +62,8 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
             maker.bottom.equalTo(self.snp.top);
         }
         self.labelImgv.snp.makeConstraints { (maker) in
-            maker.center.equalTo(self.imgView.snp.center)
+            maker.top.equalTo(self.imgView.snp.top)
+            maker.left.equalTo(self.imgView.snp.left)
         }
         
         self.borderLine(color: .orange)
@@ -73,23 +72,13 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         self.loadGetures()
         self.addFrameObserver()
         
-        self.layoutZoomVInfo()
-        
         self.loadDemoImage()
+        
+        self.layoutZoomVInfo()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func loadDemoImage()  {
-        let imgURL = PDFileUtil.fileURL(fileName: "long_height", type: "jpg")
-        let ciImg = CIImage.init(contentsOf: imgURL!)
-        let demoImage = UIImage.init(ciImage: ciImg!)
-        self.imgView.image = demoImage
-        self.imgTransF = PDIMGTransform.init(imgSize: demoImage.size, containerSize: self.frame.size, contentMode: self.imgView.contentMode)
-        
-        self.resetOriginalZoom()
     }
     
     func layoutZoomVInfo() {
@@ -98,18 +87,33 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         print("scrolll:",self.scrollView as Any)
         
         self.labelZoom.text = String.init(format: "[%.1f, %1.f]", (self.frame.width),(self.frame.height))
-        self.labelImgv.text = String.init(format: "[%.1f, %1.f]", (self.imgView.frame.width),(self.imgView.frame.height))
+        self.labelImgv.text = String.init(format: "[%1.f, %1.f]\n图:%1.fx%1.f)", (self.imgView.frame.width),(self.imgView.frame.height),(self.imgTransF.sizeImageScale.width),(self.imgTransF.sizeImageScale.height))
     }
     
+    func loadDemoImage()  {
+//        let imgURL = PDFileUtil.fileURL(fileName: "long_heightSmall", type: "jpg")
+//        let imgURL = PDFileUtil.fileURL(fileName: "long_widthSmall", type: "jpg")
+        let imgURL = PDFileUtil.fileURL(fileName: "long_widthBig", type: "png")
+        let ciImg = CIImage.init(contentsOf: imgURL!)
+        let demoImage = UIImage.init(ciImage: ciImg!)
+        self.imgView.image = demoImage
+        self.imgTransF = PDIMGTransform.init(imgSize: demoImage.size, containerSize: self.frame.size, contentMode: self.imgView.contentMode)
+        self.scrollView.maximumZoomScale = self.imgTransF.maxScale + 2
+        self.scrollView.minimumZoomScale = min(self.imgTransF.minScale * 0.5, 0.5)
+        self.resetOriginalZoom()
+    }
+    
+    
     public func resetOriginalZoom() {
-        self.scrollView?.setZoomScale(1, animated: true)
-        self.scrollView?.transform = CGAffineTransform.identity
+        self.scrollView.setZoomScale(1, animated: true)
+        self.scrollView.transform = CGAffineTransform.identity
         self.imgView.transform = CGAffineTransform.identity
         
         let sizeMode:CGSize = self.imgTransF!.sizeForContentMode(self.imgView.contentMode)
         self.imgView.frame = CGRect.init(origin: CGPoint.zero, size: sizeMode)
-        self.scrollView?.contentSize = CGSize.init(width: max(sizeMode.width, self.frame.width), height: max(sizeMode.height, self.frame.height))
-        self.scrollView?.contentOffset = CGPoint.zero
+        self.scrollView.contentSize = CGSize.init(width: max(sizeMode.width, self.frame.width), height: max(sizeMode.height, self.frame.height))
+        self.imgView.center = CGPoint.init(x: 0.5 * max(sizeMode.width, self.frame.width), y: 0.5 * max(sizeMode.height, self.frame.height))
+        self.scrollView.contentOffset = CGPoint.zero
     }
     
     private func loadGetures(){
@@ -125,12 +129,22 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         var touchP = tap.location(in: self.imgView)
         touchP = CGPoint.init(x: touchP.x * oldTransF.a, y: touchP.y * oldTransF.d)
         
-        if transF.a < 1.8 {
-            transF.a = 1.8
-            transF.d = 1.8
-        } else {
-            transF.a = 1
-            transF.d = 1
+        if self.imgTransF.longTyp == .Horizontal {
+            if transF.a < self.imgTransF.scaleFill {
+                transF.a = self.imgTransF.scaleFill
+                transF.d = self.imgTransF.scaleFill
+            }else{
+                transF.a = self.imgTransF.scaleFit
+                transF.d = self.imgTransF.scaleFit
+            }
+        }else{
+            if transF.a < self.imgTransF!.maxScale {
+                transF.a = self.imgTransF!.maxScale
+                transF.d = self.imgTransF!.maxScale
+            } else {
+                transF.a = 1
+                transF.d = 1
+            }
         }
         let ratioCalce = transF.a/oldTransF.a
         let oriOffset = self.scrollView!.contentOffset
@@ -140,10 +154,10 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         offsetScroll = CGPoint.init(x: oriOffset.x + offsetP.x, y: oriOffset.y + offsetP.y)
         
         let conSize = CGSize.init(width: transF.a * modeSize.width, height: transF.d * modeSize.height)
-        if oldTransF.a > transF.a {
+//        if oldTransF.a > transF.a {
             offsetScroll = CGPoint.init(x: max(offsetScroll.x, 0), y: max(offsetScroll.y, 0))
-            offsetScroll = CGPoint.init(x: min(offsetScroll.x, conSize.width-self.scrollView!.frame.width), y: min(offsetScroll.y, conSize.height-self.scrollView!.frame.height))
-        }
+            offsetScroll = CGPoint.init(x: min(offsetScroll.x, max(conSize.width-self.scrollView!.frame.width,0)), y: min(offsetScroll.y, max(conSize.height-self.scrollView!.frame.height,0)))
+//        }
         
         UIView.animate(withDuration: 0.25) {
             self.imgView.transform = transF
