@@ -7,6 +7,15 @@
 
 import UIKit
 
+struct PDImgDemo {
+    let name:String
+    let type:String
+    init(_ name:String,_ type:String) {
+        self.name = name
+        self.type = type
+    }
+}
+
 class PDZoomScrollView: UIView,UIScrollViewDelegate{
     var tapDoubleGR:UITapGestureRecognizer!
     var scrollView:UIScrollView!
@@ -77,9 +86,17 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         self.loadGetures()
         self.addFrameObserver()
         
-        self.loadDemoImage()
         
-        self.layoutZoomVInfo()
+        let imgDemos = [PDImgDemo("small","png"),
+        PDImgDemo("sageAlliance","jpg"),
+        PDImgDemo("screenCut","jpeg"),
+        PDImgDemo("long_heightSmall","jpg"),
+        PDImgDemo("long_widthSmall","jpg"),
+        PDImgDemo("long_widthBig","png"),
+        PDImgDemo("long_widthSmall","jpg")]
+
+        let imgDemo = imgDemos[0]
+        self.loadDemoImage(fileName: imgDemo.name, type: imgDemo.type)
     }
     
     required init?(coder: NSCoder) {
@@ -87,6 +104,9 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
     }
     
     func layoutZoomVInfo() {
+        if self.imgTransF == nil {
+            return
+        }
         let imgvInfo = self.imgView.layoutInfo()
         print("imgView:",imgvInfo)
         print("scrolll:",self.scrollView as Any)
@@ -95,13 +115,8 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         self.labelImgv.text = String.init(format: "[%1.f, %1.f]\n图:%1.fx%1.f)", (self.imgView.frame.width),(self.imgView.frame.height),(self.imgTransF.sizeImageScale.width),(self.imgTransF.sizeImageScale.height))
     }
     
-    func loadDemoImage()  {
-        let imgURL = PDFileUtil.fileURL(fileName: "small", type: "png")
-//        let imgURL = PDFileUtil.fileURL(fileName: "sageAlliance", type: "jpg")
-//        let imgURL = PDFileUtil.fileURL(fileName: "screenCut", type: "jpeg")
-//        let imgURL = PDFileUtil.fileURL(fileName: "long_heightSmall", type: "jpg")
-//        let imgURL = PDFileUtil.fileURL(fileName: "long_widthSmall", type: "jpg")
-//        let imgURL = PDFileUtil.fileURL(fileName: "long_widthBig", type: "png")
+    func loadDemoImage(fileName:String,type:String)  {
+        let imgURL = PDFileUtil.fileURL(fileName: fileName, type: type)
         let ciImg = CIImage.init(contentsOf: imgURL!)
         let demoImage = UIImage.init(ciImage: ciImg!)
         self.imgView.image = demoImage
@@ -109,6 +124,8 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         self.scrollView.maximumZoomScale = self.imgTransF.maxScale + 2
         self.scrollView.minimumZoomScale = min(self.imgTransF.minScale, 0.5)
         self.resetOriginalZoom()
+        
+        self.layoutZoomVInfo()
     }
     
     

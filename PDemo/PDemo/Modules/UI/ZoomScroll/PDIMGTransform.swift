@@ -85,9 +85,9 @@ struct PDIMGTransform {
         self.scaleFill = self.sizeAspectFill.width / self.sizeAspectFit.width
 
         /*最小缩放系数：使展示出的图不大于scaleFit，且不大于分辨率对应屏幕尺寸比*/
-        self.minScale = min(self.scaleFit, imgW/conW)
+        self.minScale = min(self.scaleFit, imgSize.width/conW)
         /*最大缩放系数：使展示出的图不小于scaleFill，且不能小于原图分辨率屏幕尺寸比*/
-        self.maxScale = max(self.scaleFill, imgW/conW)
+        self.maxScale = max(self.scaleFill, imgSize.width/conW)
         
         
         let sideRatio:Double = Double(imgW/imgH)

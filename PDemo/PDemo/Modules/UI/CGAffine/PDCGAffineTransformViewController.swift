@@ -7,14 +7,16 @@
 
 import UIKit
 
+
+
 class PDCGAffineTransformViewController: PDViewController {
 
     var imgv:UIImageView = {
-        let imgv = UIImageView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        let imgURL = PDFileUtil.fileURL(fileName: "long_widthSmall", type: "jpg")
+        let imgv = UIImageView.init(frame: CGRect(x: 0, y: 0, width: 240, height: 300))
+        let imgURL = PDFileUtil.fileURL(fileName: "small", type: "png")
         let ciImg = CIImage.init(contentsOf: imgURL!)
         imgv.image = UIImage.init(ciImage: ciImg!)
-        imgv.contentMode = .scaleAspectFit
+        imgv.contentMode = .center
         imgv.borderLine(color: .red)
         return imgv
     }()
@@ -102,14 +104,14 @@ class PDCGAffineTransformViewController: PDViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.view.addSubview(self.zoomSV)
         self.curView = self.zoomSV;
         
-        self.buildControlItems()
-
 //        self.view.addSubview(self.imgv)
 //        self.curView = self.imgv
+
+        self.buildControlItems()
+
         
         var curCP = self.view.center
         curCP.y += 100

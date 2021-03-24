@@ -16,7 +16,6 @@ class PDZoomScrollViewController: PDViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-
         self.view.addSubview(self.zoomSV)
 
         self.showNoneNavigationBackButton()
