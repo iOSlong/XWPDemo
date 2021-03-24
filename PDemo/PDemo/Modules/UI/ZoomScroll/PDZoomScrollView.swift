@@ -44,6 +44,11 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         super.init(frame: frame)
         
         self.scrollView = UIScrollView.init(frame: self.bounds)
+        if #available(iOS 11.0, *) {//解决scrollView上分状态栏冗余空白区域问题。
+            self.scrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        }
         self.scrollView.contentSize = self.bounds.size
         self.scrollView.delegate = self
         self.addSubview(self.scrollView!)
@@ -91,15 +96,18 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
     }
     
     func loadDemoImage()  {
+        let imgURL = PDFileUtil.fileURL(fileName: "small", type: "png")
+//        let imgURL = PDFileUtil.fileURL(fileName: "sageAlliance", type: "jpg")
+//        let imgURL = PDFileUtil.fileURL(fileName: "screenCut", type: "jpeg")
 //        let imgURL = PDFileUtil.fileURL(fileName: "long_heightSmall", type: "jpg")
 //        let imgURL = PDFileUtil.fileURL(fileName: "long_widthSmall", type: "jpg")
-        let imgURL = PDFileUtil.fileURL(fileName: "long_widthBig", type: "png")
+//        let imgURL = PDFileUtil.fileURL(fileName: "long_widthBig", type: "png")
         let ciImg = CIImage.init(contentsOf: imgURL!)
         let demoImage = UIImage.init(ciImage: ciImg!)
         self.imgView.image = demoImage
         self.imgTransF = PDIMGTransform.init(imgSize: demoImage.size, containerSize: self.frame.size, contentMode: self.imgView.contentMode)
         self.scrollView.maximumZoomScale = self.imgTransF.maxScale + 2
-        self.scrollView.minimumZoomScale = min(self.imgTransF.minScale * 0.5, 0.5)
+        self.scrollView.minimumZoomScale = min(self.imgTransF.minScale, 0.5)
         self.resetOriginalZoom()
     }
     

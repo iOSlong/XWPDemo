@@ -33,8 +33,8 @@ struct PDIMGTransform {
         self.sizeImage = imgSize
         self.containerSize = containerSize
         self.contentMode = contentMode
-        let imgW = imgSize.width / UIScreen.main.scale
-        let imgH = imgSize.height / UIScreen.main.scale
+        let imgW = imgSize.width / UIScreen.main.nativeScale
+        let imgH = imgSize.height / UIScreen.main.nativeScale
         self.sizeImageScale = CGSize(width: imgW,height: imgH)
         
         let conW = containerSize.width
@@ -84,7 +84,9 @@ struct PDIMGTransform {
         self.scaleFit  = 1
         self.scaleFill = self.sizeAspectFill.width / self.sizeAspectFit.width
 
-        self.minScale = self.scaleFit; //缩放控制最小比例
+        /*最小缩放系数：使展示出的图不大于scaleFit，且不大于分辨率对应屏幕尺寸比*/
+        self.minScale = min(self.scaleFit, imgW/conW)
+        /*最大缩放系数：使展示出的图不小于scaleFill，且不能小于原图分辨率屏幕尺寸比*/
         self.maxScale = max(self.scaleFill, imgW/conW)
         
         
