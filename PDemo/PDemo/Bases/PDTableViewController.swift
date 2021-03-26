@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class PDTableViewController: PDViewController,UITableViewDelegate,UITableViewDataSource {
+class PDTableViewController: PDListViewController,UITableViewDelegate,UITableViewDataSource {
 //    MARK:UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.PDTable(tableView, numberOfRowsInSection: section)

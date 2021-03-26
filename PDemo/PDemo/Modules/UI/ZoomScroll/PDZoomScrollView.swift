@@ -95,7 +95,7 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         PDImgDemo("long_widthBig","png"),
         PDImgDemo("long_widthSmall","jpg")]
 
-        let imgDemo = imgDemos[0]
+        let imgDemo = imgDemos[3]
         self.loadDemoImage(fileName: imgDemo.name, type: imgDemo.type)
     }
     
@@ -121,7 +121,7 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         let demoImage = UIImage.init(ciImage: ciImg!)
         self.imgView.image = demoImage
         self.imgTransF = PDIMGTransform.init(imgSize: demoImage.size, containerSize: self.frame.size, contentMode: self.imgView.contentMode)
-        self.scrollView.maximumZoomScale = self.imgTransF.maxScale + 2
+        self.scrollView.maximumZoomScale = self.imgTransF.maxScale + 1
         self.scrollView.minimumZoomScale = min(self.imgTransF.minScale, 0.5)
         self.resetOriginalZoom()
         
@@ -133,9 +133,9 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         self.scrollView.setZoomScale(1, animated: true)
         self.scrollView.transform = CGAffineTransform.identity
         self.imgView.transform = CGAffineTransform.identity
-        
-        let sizeMode:CGSize = self.imgTransF!.sizeForContentMode(self.imgView.contentMode)
-        self.imgView.frame = CGRect.init(origin: CGPoint.zero, size: sizeMode)
+        self.imgView.frame = CGRect.init(origin: CGPoint.zero, size: self.imgTransF.sizeAspectFit)
+        let sizeMode:CGSize = self.imgTransF.sizeAspectFill;
+        self.imgView.transform = CGAffineTransform.init(a: self.imgTransF.scaleFill, b: 0, c: 0, d: self.imgTransF.scaleFill, tx: 0, ty: 0);
         self.scrollView.contentSize = CGSize.init(width: max(sizeMode.width, self.frame.width), height: max(sizeMode.height, self.frame.height))
         self.imgView.center = CGPoint.init(x: 0.5 * max(sizeMode.width, self.frame.width), y: 0.5 * max(sizeMode.height, self.frame.height))
         self.scrollView.contentOffset = CGPoint.zero
@@ -148,7 +148,6 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
     }
     
     @objc private func doubleTapAction(_ tap:UITapGestureRecognizer){
-        let modeSize:CGSize = self.imgTransF!.sizeForContentMode(self.imgView.contentMode)
         let oldTransF = self.imgView.transform
         var transF = self.imgView.transform
         var touchP = tap.location(in: self.imgView)
@@ -163,26 +162,25 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
                 transF.d = self.imgTransF.scaleFit
             }
         }else{
-            if transF.a < self.imgTransF!.maxScale {
-                transF.a = self.imgTransF!.maxScale
-                transF.d = self.imgTransF!.maxScale
+            if transF.a < self.imgTransF.maxScale {
+                transF.a = self.imgTransF.maxScale
+                transF.d = self.imgTransF.maxScale
             } else {
-                transF.a = 1
-                transF.d = 1
+                transF.a = self.imgTransF.scaleFill
+                transF.d = self.imgTransF.scaleFill
             }
         }
         let ratioCalce = transF.a/oldTransF.a
-        let oriOffset = self.scrollView!.contentOffset
+        let oriOffset = self.scrollView.contentOffset
         let destP  = CGPoint.init(x: touchP.x * ratioCalce, y: touchP.y * ratioCalce)
         let offsetP = CGPoint.init(x: destP.x - touchP.x, y: destP.y - touchP.y)
-        var offsetScroll:CGPoint
-        offsetScroll = CGPoint.init(x: oriOffset.x + offsetP.x, y: oriOffset.y + offsetP.y)
+        var offsetScroll = CGPoint.init(x: oriOffset.x + offsetP.x, y: oriOffset.y + offsetP.y)
         
+        let modeSize:CGSize = self.imgTransF.sizeAspectFit;
+
         let conSize = CGSize.init(width: transF.a * modeSize.width, height: transF.d * modeSize.height)
-//        if oldTransF.a > transF.a {
-            offsetScroll = CGPoint.init(x: max(offsetScroll.x, 0), y: max(offsetScroll.y, 0))
-            offsetScroll = CGPoint.init(x: min(offsetScroll.x, max(conSize.width-self.scrollView!.frame.width,0)), y: min(offsetScroll.y, max(conSize.height-self.scrollView!.frame.height,0)))
-//        }
+        offsetScroll = CGPoint.init(x: max(offsetScroll.x, 0), y: max(offsetScroll.y, 0))
+        offsetScroll = CGPoint.init(x: min(offsetScroll.x, max(conSize.width-self.scrollView!.frame.width,0)), y: min(offsetScroll.y, max(conSize.height-self.scrollView!.frame.height,0)))
         
         UIView.animate(withDuration: 0.25) {
             self.imgView.transform = transF

@@ -11,10 +11,16 @@ class PDNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //设置导航栏背景颜色
         self.navigationBar.barTintColor = .clear
-        self.navigationBar.tintColor = .white
-        // Do any additional setup after loading the view.
+        
+        //标题颜色
+        let dict:NSDictionary = [NSAttributedString.Key.foregroundColor: UIColor.orange,
+                                 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)]
+        self.navigationBar.titleTextAttributes = (dict as! [NSAttributedString.Key : Any])
+        
+        //item颜色
+        self.navigationBar.tintColor = UIColor.orange
     }
     
 

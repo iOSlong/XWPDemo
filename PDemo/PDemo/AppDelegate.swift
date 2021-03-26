@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()//可有可无。
 
         let listUI = PDUICaseViewController()
-        listUI.title = "UI"
+        listUI.title = "User interface"
 
         let listNet = PDTableViewController()
         listNet.title = "Net"
