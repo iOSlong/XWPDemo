@@ -15,9 +15,14 @@ import UIKit
     
     //可选协议方法
     @objc optional
-    func PDCollection(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
+    func PDCollection(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     
     @objc optional
     func PDNumberOfSections(in collectionView: UICollectionView) -> Int
+    
+    
+    @objc optional
+    func PDcollection(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+
 
 }

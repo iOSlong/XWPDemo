@@ -39,6 +39,8 @@
 		01C23C2A26034ECD00D94573 /* PDZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23C2926034ECD00D94573 /* PDZoomScrollView.swift */; };
 		01C23C2E26034EEF00D94573 /* PDZoomScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23C2D26034EEF00D94573 /* PDZoomScrollViewController.swift */; };
 		01C23C392603513000D94573 /* PDFileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23C382603513000D94573 /* PDFileUtil.swift */; };
+		01D2F9F2260EFF86009BC48B /* PDExtesionToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D2F9F1260EFF86009BC48B /* PDExtesionToolsViewController.swift */; };
+		01D2F9F8260F0742009BC48B /* PDImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D2F9F7260F0742009BC48B /* PDImagePickerViewController.swift */; };
 		817D53A754ED472F7519E14D /* Pods_PDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44123745A32C1A610C2323E /* Pods_PDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,8 @@
 		01C23C2D26034EEF00D94573 /* PDZoomScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDZoomScrollViewController.swift; sourceTree = "<group>"; };
 		01C23C36260350B400D94573 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		01C23C382603513000D94573 /* PDFileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFileUtil.swift; sourceTree = "<group>"; };
+		01D2F9F1260EFF86009BC48B /* PDExtesionToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDExtesionToolsViewController.swift; sourceTree = "<group>"; };
+		01D2F9F7260F0742009BC48B /* PDImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDImagePickerViewController.swift; sourceTree = "<group>"; };
 		D8647B626CBB03467C0B6313 /* Pods-PDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PDemo.debug.xcconfig"; path = "Target Support Files/Pods-PDemo/Pods-PDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E44123745A32C1A610C2323E /* Pods_PDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -99,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				0101A6D3260E10E80000A22A /* PDPhotoListViewController.swift */,
+				01D2F9F7260F0742009BC48B /* PDImagePickerViewController.swift */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
@@ -176,7 +181,7 @@
 		01C23C052603241500D94573 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				0101A6D2260E10930000A22A /* Picker */,
+				01D2F9F0260EFF38009BC48B /* ExtesionTools */,
 				01C23C062603241500D94573 /* UI */,
 			);
 			path = Modules;
@@ -256,6 +261,15 @@
 				01C23C36260350B400D94573 /* iconfont.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		01D2F9F0260EFF38009BC48B /* ExtesionTools */ = {
+			isa = PBXGroup;
+			children = (
+				0101A6D2260E10930000A22A /* Picker */,
+				01D2F9F1260EFF86009BC48B /* PDExtesionToolsViewController.swift */,
+			);
+			path = ExtesionTools;
 			sourceTree = "<group>";
 		};
 		1051A4549C75D9A9C1A66E4A /* Pods */ = {
@@ -404,6 +418,7 @@
 				01C23C122603241500D94573 /* PDCGAffineTransformViewController.swift in Sources */,
 				0101A6D0260E03100000A22A /* PDCollectionViewProtocol.swift in Sources */,
 				01C23C2E26034EEF00D94573 /* PDZoomScrollViewController.swift in Sources */,
+				01D2F9F8260F0742009BC48B /* PDImagePickerViewController.swift in Sources */,
 				01C23C2A26034ECD00D94573 /* PDZoomScrollView.swift in Sources */,
 				019244222608BCA10010CA1A /* PDIMGTransform.swift in Sources */,
 				0101A6CA260DF8D30000A22A /* PDCollectionViewController.swift in Sources */,
@@ -413,6 +428,7 @@
 				0101A6CD260DFD940000A22A /* PDCollectionViewCell.swift in Sources */,
 				01C23C102603241500D94573 /* ConstantUI.swift in Sources */,
 				01C23C1F2603369600D94573 /* UIViewExtension.swift in Sources */,
+				01D2F9F2260EFF86009BC48B /* PDExtesionToolsViewController.swift in Sources */,
 				01C23C0E2603241500D94573 /* PDNavigationViewController.swift in Sources */,
 				01C23BE52603236C00D94573 /* AppDelegate.swift in Sources */,
 				01C23C262603499500D94573 /* PDVCUtil.swift in Sources */,

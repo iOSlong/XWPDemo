@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let listUI = PDUICaseViewController()
         listUI.title = "User interface"
 
-        let listNet = PDTableViewController()
-        listNet.title = "Net"
+        let listNet = PDExtesionToolsViewController()
+        listNet.title = "Apple&PD Lib"
 
 
         let naviUI = PDNavigationViewController.init(rootViewController: listUI)

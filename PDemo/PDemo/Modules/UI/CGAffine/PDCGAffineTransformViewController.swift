@@ -69,8 +69,8 @@ class PDCGAffineTransformViewController: PDViewController {
     func buildControlItems() {
         self.navigationController?.navigationBar.isHidden = true
         self.showNoneNavigationBackButton()
-        self.showResetButton()
-        self.showLogInfoButton()
+        self.showRightButton(title: "复位")
+        self.showCenterButton(title:"LogInfo")
         
         self.view.addSubview(self.slider_a)
         self.view.addSubview(self.slider_b)
@@ -81,7 +81,7 @@ class PDCGAffineTransformViewController: PDViewController {
     }
     
 
-    override func resetButtonClick(_:UIButton) {
+    override func rightButtonClick(_:UIButton) {
         UIView.animate(withDuration: 0.5) {
             self.slider_a.setRefrenceValue(ref_mapVal: 1)
             self.slider_b.setRefrenceValue(ref_mapVal: 0)
@@ -94,7 +94,7 @@ class PDCGAffineTransformViewController: PDViewController {
         self.zoomSV.resetOriginalZoom()
     }
     
-    override func logInfoButtonClick(_:UIButton) {
+    override func centerButtonClick(_:UIButton) {
         print(self.curView?.layoutInfo() as Any)
         if self.curView == self.zoomSV {
             self.zoomSV.layoutZoomVInfo()
