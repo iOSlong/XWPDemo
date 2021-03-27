@@ -17,6 +17,7 @@ class PDImagePickerViewController: PDViewController , UIImagePickerControllerDel
         self.showRightButton(title: "Picker")
         
         self.showUIImagePickerViewController()
+        
     }
     
     override func rightButtonClick(_: UIButton) {

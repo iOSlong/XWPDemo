@@ -96,7 +96,10 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         PDImgDemo("long_widthSmall","jpg")]
 
         let imgDemo = imgDemos[3]
-        self.loadDemoImage(fileName: imgDemo.name, type: imgDemo.type)
+        let imgURL = PDFileUtil.fileURL(fileName: imgDemo.name, type: imgDemo.type)
+        let ciImg = CIImage.init(contentsOf: imgURL!)
+        let demoImage = UIImage.init(ciImage: ciImg!)
+        self.loadDemoImage(demoImage: demoImage)
     }
     
     required init?(coder: NSCoder) {
@@ -115,10 +118,7 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
         self.labelImgv.text = String.init(format: "[%1.f, %1.f]\n图:%1.fx%1.f)", (self.imgView.frame.width),(self.imgView.frame.height),(self.imgTransF.sizeImageScale.width),(self.imgTransF.sizeImageScale.height))
     }
     
-    func loadDemoImage(fileName:String,type:String)  {
-        let imgURL = PDFileUtil.fileURL(fileName: fileName, type: type)
-        let ciImg = CIImage.init(contentsOf: imgURL!)
-        let demoImage = UIImage.init(ciImage: ciImg!)
+    func loadDemoImage(demoImage:UIImage)  {
         self.imgView.image = demoImage
         self.imgTransF = PDIMGTransform.init(imgSize: demoImage.size, containerSize: self.frame.size, contentMode: self.imgView.contentMode)
         self.scrollView.maximumZoomScale = self.imgTransF.maxScale + 1

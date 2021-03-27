@@ -7,9 +7,15 @@
 
 import UIKit
 
+typealias PDPhotoListSelected = (_ imagePath:String) -> Void
+
+
 class PDPhotoListViewController: PDCollectionViewController, PDCollectionViewDelegate {
     
+    var photoDismissWithSelectedImage:PDPhotoListSelected?
+
     var imagePaths:Array<String>?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +42,7 @@ class PDPhotoListViewController: PDCollectionViewController, PDCollectionViewDel
         }
         return cell
     }
+    
     func PDNumberOfSections(in collectionView: UICollectionView) -> Int{
         return 1
     }
@@ -43,4 +50,15 @@ class PDPhotoListViewController: PDCollectionViewController, PDCollectionViewDel
     func PDcollection(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: 200,height: 200)
     }
+    
+    func PDCollection(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        if self.imagePaths != nil {
+            let imgPath = self.imagePaths![indexPath.row]
+            if (self.photoDismissWithSelectedImage != nil && imgPath != nil) {
+                self.photoDismissWithSelectedImage!(imgPath)
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+
 }
