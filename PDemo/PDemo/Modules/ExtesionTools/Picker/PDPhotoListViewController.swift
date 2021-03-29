@@ -54,7 +54,7 @@ class PDPhotoListViewController: PDCollectionViewController, PDCollectionViewDel
     func PDCollection(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if self.imagePaths != nil {
             let imgPath = self.imagePaths![indexPath.row]
-            if (self.photoDismissWithSelectedImage != nil && imgPath != nil) {
+            if (self.photoDismissWithSelectedImage != nil) {
                 self.photoDismissWithSelectedImage!(imgPath)
                 self.dismiss(animated: true, completion: nil)
             }
