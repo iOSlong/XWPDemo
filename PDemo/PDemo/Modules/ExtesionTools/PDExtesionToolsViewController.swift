@@ -28,7 +28,8 @@ class PDExtesionToolsViewController: PDTableViewController {
         caseSections = [
             [
                 ["ImagePicker":"PDImagePickerViewController"],
-                ["Reources_Images":"PDPhotoListViewController"]
+                ["Reources_Images":"PDPhotoListViewController"],
+                ["String Code Encode":"PDStringCodeEncodeViewController"]
             ]
         ]
     }

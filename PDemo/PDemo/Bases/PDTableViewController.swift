@@ -13,7 +13,10 @@ class PDTableViewController: PDListViewController,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.PDTable(tableView, numberOfRowsInSection: section)
     }
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        let num:Int =  self.PDNumberOfSections(in: tableView)
+        return num > 0 ? num:1
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return self.PDTable(tableView, cellForRowAt: indexPath)
     }
@@ -59,6 +62,9 @@ class PDTableViewController: PDListViewController,UITableViewDelegate,UITableVie
     public func PDTable(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell:PDTableViewCell = tableView.dequeueReusableCell(withIdentifier:NSStringFromClass(PDTableViewCell.self)) as! PDTableViewCell
         return cell
+    }
+    public func PDNumberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     public func PDTable(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
