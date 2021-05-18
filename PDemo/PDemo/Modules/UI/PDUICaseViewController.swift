@@ -28,7 +28,8 @@ class PDUICaseViewController: PDTableViewController {
         caseSections = [
             [
                 ["CGAffine":"PDCGAffineTransformViewController"],
-                ["ZoomScroll":"PDZoomScrollViewController"]
+                ["ZoomScroll":"PDZoomScrollViewController"],
+                ["ScreenCapture":"PDScreenCaptureViewController"]
             ]
         ]
         
