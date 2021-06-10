@@ -14,14 +14,22 @@ struct PDImgDemo {
         self.name = name
         self.type = type
     }
+    var fullName:String {
+        return self.name+"."+self.type
+    }
 }
 
 class PDZoomScrollView: UIView,UIScrollViewDelegate{
+    deinit {
+        print("PDZoomScrollView 释放掉了")
+        self.imgView.image = nil
+    }
+    
     var tapDoubleGR:UITapGestureRecognizer!
     var scrollView:UIScrollView!
     var imgTransF:PDIMGTransform!
-    var imgView:UIImageView = {
-        let imgv = UIImageView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    var imgView:PDImageView = {
+        let imgv = PDImageView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
 //        imgv.contentMode = .scaleAspectFit
         return imgv
     }()
@@ -120,6 +128,8 @@ class PDZoomScrollView: UIView,UIScrollViewDelegate{
     
     func loadDemoImage(demoImage:UIImage)  {
         self.imgView.image = demoImage
+//        self.imgView.loadLargeImage(image: demoImage)
+        
         self.imgTransF = PDIMGTransform.init(imgSize: demoImage.size, containerSize: self.frame.size, contentMode: self.imgView.contentMode)
         self.scrollView.maximumZoomScale = self.imgTransF.maxScale + 1
         self.scrollView.minimumZoomScale = min(self.imgTransF.minScale, 0.5)

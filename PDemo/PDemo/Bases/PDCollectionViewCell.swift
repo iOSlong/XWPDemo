@@ -47,10 +47,15 @@ class PDCollectionViewCell: UICollectionViewCell {
         if localImgPath != nil {
             self.dispathQueue.async {
                 let image = PDFileUtil.image(imagePath:localImgPath!)
-                if image != nil && localImgPath == self.backgroundImgPath {
-                    DispatchQueue.main.async {
-                        self.backgroundImageView.image = image
+                let imgSize = 10//PDFileUtil.memorySizeWithImage(image: image)
+                if imgSize < 90 {
+                    if image != nil && localImgPath == self.backgroundImgPath {
+                        DispatchQueue.main.async {
+                            self.backgroundImageView.image = image
+                        }
                     }
+                } else {
+                    print("图片太大了 \(String(describing: localImgPath)),size:\(imgSize)")
                 }
             }
         }

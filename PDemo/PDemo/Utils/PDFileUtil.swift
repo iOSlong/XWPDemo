@@ -36,6 +36,16 @@ class PDFileUtil {
         paths = jpgs + pngs + jpegs
         return paths
     }
+    
+    static func memorySizeWithImage(image:UIImage?) -> Int {
+        if image?.cgImage == nil {
+            return 0
+        }
+        let cgImgBytesPerRow = image?.cgImage!.bytesPerRow
+        let cgImgHeight = image?.cgImage!.height
+        let size =  CGFloat(cgImgHeight!) * CGFloat(cgImgBytesPerRow!)
+        return Int(size)
+    }
 }
 
 

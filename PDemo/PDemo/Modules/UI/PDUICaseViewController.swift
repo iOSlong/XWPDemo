@@ -29,7 +29,8 @@ class PDUICaseViewController: PDTableViewController {
             [
                 ["CGAffine":"PDCGAffineTransformViewController"],
                 ["ZoomScroll":"PDZoomScrollViewController"],
-                ["ScreenCapture":"PDScreenCaptureViewController"]
+                ["ScreenCapture":"PDScreenCaptureViewController"],
+                ["LargeImageStrategies":"PDLargeImageStrategiesViewController"]
             ]
         ]
         

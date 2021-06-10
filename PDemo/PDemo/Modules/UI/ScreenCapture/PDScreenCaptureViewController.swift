@@ -41,6 +41,17 @@ class PDScreenCaptureViewController: PDTableViewController {
     }
     
     override func rightButtonClick(_: UIButton) {
+//        self.captureCurrentScreen()
+        
+        self.captureViewPiece()
+    }
+    
+    func captureViewPiece() -> Void {
+        let pieceImg:UIImage =  PDViewPiece.init().pieceImageFromType(type: .list)
+        self.zoomSV.loadDemoImage(demoImage: pieceImg)
+    }
+    
+    func captureCurrentScreen() -> Void {
         print("截屏显示看看")
         
         let captureImg = PDViewUtil.screenCaptureFrom(view: self.view, cutFrame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height));
@@ -61,10 +72,10 @@ class PDScreenCaptureViewController: PDTableViewController {
 
         let imgCombines = PDViewUtil.imageCombine(imageArray: [headerImg,captureImg,captureImg2,imgConbine,footerImg], sizeContent: CGSize.init(width: UIScreen.main.bounds.width, height: 500));
         
-        
-        
         self.zoomSV.loadDemoImage(demoImage: imgCombines)
     }
+    
+    
     
     override func PDTable(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let caseSection:Array<Any> = caseSections?[section] ?? []
