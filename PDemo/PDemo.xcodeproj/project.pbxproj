@@ -26,6 +26,9 @@
 		01361E0B26539E1500C07232 /* 90.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01361E0926539E1500C07232 /* 90.jpg */; };
 		01361E0D2653A77A00C07232 /* PDImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01361E0C2653A77A00C07232 /* PDImageView.swift */; };
 		017CB3552671ECD400FE1E8A /* PDViewPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017CB3542671ECD400FE1E8A /* PDViewPiece.swift */; };
+		019114BE268978C5007756F6 /* PDInputViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019114BD268978C5007756F6 /* PDInputViewsViewController.swift */; };
+		019114C02689796A007756F6 /* PDTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019114BF2689796A007756F6 /* PDTextFieldViewController.swift */; };
+		019114C22689798F007756F6 /* PDUITextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019114C12689798F007756F6 /* PDUITextViewViewController.swift */; };
 		01924418260480B30010CA1A /* PDValueSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01924417260480B30010CA1A /* PDValueSlider.swift */; };
 		019244222608BCA10010CA1A /* PDIMGTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019244212608BCA00010CA1A /* PDIMGTransform.swift */; };
 		01C23BE52603236C00D94573 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23BE42603236C00D94573 /* AppDelegate.swift */; };
@@ -77,6 +80,9 @@
 		01361E0926539E1500C07232 /* 90.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 90.jpg; sourceTree = "<group>"; };
 		01361E0C2653A77A00C07232 /* PDImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDImageView.swift; sourceTree = "<group>"; };
 		017CB3542671ECD400FE1E8A /* PDViewPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDViewPiece.swift; sourceTree = "<group>"; };
+		019114BD268978C5007756F6 /* PDInputViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDInputViewsViewController.swift; sourceTree = "<group>"; };
+		019114BF2689796A007756F6 /* PDTextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTextFieldViewController.swift; sourceTree = "<group>"; };
+		019114C12689798F007756F6 /* PDUITextViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDUITextViewViewController.swift; sourceTree = "<group>"; };
 		01924417260480B30010CA1A /* PDValueSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDValueSlider.swift; sourceTree = "<group>"; };
 		019244212608BCA00010CA1A /* PDIMGTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDIMGTransform.swift; sourceTree = "<group>"; };
 		01C23BE12603236C00D94573 /* PDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +164,16 @@
 				01361E062653975D00C07232 /* 8M.jpg */,
 			);
 			path = largeImgs;
+			sourceTree = "<group>";
+		};
+		019114BC2689788F007756F6 /* InputView */ = {
+			isa = PBXGroup;
+			children = (
+				019114BD268978C5007756F6 /* PDInputViewsViewController.swift */,
+				019114BF2689796A007756F6 /* PDTextFieldViewController.swift */,
+				019114C12689798F007756F6 /* PDUITextViewViewController.swift */,
+			);
+			path = InputView;
 			sourceTree = "<group>";
 		};
 		01C23BD82603236C00D94573 = {
@@ -244,6 +260,7 @@
 		01C23C062603241500D94573 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				019114BC2689788F007756F6 /* InputView */,
 				01361E002653940900C07232 /* LargeImage */,
 				01361DF82652458600C07232 /* ScreenCapture */,
 				01C23C2826034EBB00D94573 /* ZoomScroll */,
@@ -491,11 +508,13 @@
 				01EE0090261EDC8C001DD80A /* StringExtension.swift in Sources */,
 				01C23C122603241500D94573 /* PDCGAffineTransformViewController.swift in Sources */,
 				0101A6D0260E03100000A22A /* PDCollectionViewProtocol.swift in Sources */,
+				019114BE268978C5007756F6 /* PDInputViewsViewController.swift in Sources */,
 				01C23C2E26034EEF00D94573 /* PDZoomScrollViewController.swift in Sources */,
 				01D2F9F8260F0742009BC48B /* PDImagePickerViewController.swift in Sources */,
 				01EE008A261ED4F8001DD80A /* PDStringCodeEncodeViewController.swift in Sources */,
 				01C23C2A26034ECD00D94573 /* PDZoomScrollView.swift in Sources */,
 				01361E04265394F800C07232 /* PDLargeImageViewController.swift in Sources */,
+				019114C22689798F007756F6 /* PDUITextViewViewController.swift in Sources */,
 				019244222608BCA10010CA1A /* PDIMGTransform.swift in Sources */,
 				0101A6CA260DF8D30000A22A /* PDCollectionViewController.swift in Sources */,
 				01C23C0F2603241500D94573 /* PDViewController.swift in Sources */,
@@ -513,6 +532,7 @@
 				01C23C112603241500D94573 /* PDDevice.swift in Sources */,
 				01C23C0D2603241500D94573 /* PDListViewController.swift in Sources */,
 				01361E0D2653A77A00C07232 /* PDImageView.swift in Sources */,
+				019114C02689796A007756F6 /* PDTextFieldViewController.swift in Sources */,
 				01361E02265394AF00C07232 /* PDLargeImageStrategiesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -662,7 +682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6ZUV3Y67Z8;
+				DEVELOPMENT_TEAM = P7ST84G85A;
 				INFOPLIST_FILE = PDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -683,7 +703,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6ZUV3Y67Z8;
+				DEVELOPMENT_TEAM = P7ST84G85A;
 				INFOPLIST_FILE = PDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
